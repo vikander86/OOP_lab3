@@ -1,4 +1,5 @@
 #include <iostream>
+#include <functional>
 
 class Wheel
 {
@@ -10,6 +11,48 @@ private:
 
 public:
     Wheel(double radius) : radius(radius), rpm(0), angle(0), pressure(0) {}
+
+    ~Wheel() {}
+
+    bool operator==(const Wheel &compareToWheel) const
+    {
+        double speedOne = this->radius * this->rpm;
+        double speedTwo = compareToWheel.radius * compareToWheel.rpm;
+        return speedOne == speedTwo;
+    }
+
+    bool operator!=(const Wheel &compareToWheel) const
+    {
+        double speedOne = this->radius * this->rpm;
+        double speedTwo = compareToWheel.radius * compareToWheel.rpm;
+        return speedOne != speedTwo;
+    }
+
+    bool operator<(const Wheel &compareToWheel) const
+    {
+        double speedOne = this->radius * this->rpm;
+        double speedTwo = compareToWheel.radius * compareToWheel.rpm;
+        return speedOne < speedTwo;
+    }
+    bool operator<=(const Wheel &compareToWheel) const
+    {
+        double speedOne = this->radius * this->rpm;
+        double speedTwo = compareToWheel.radius * compareToWheel.rpm;
+        return speedOne <= speedTwo;
+    }
+    bool operator>(const Wheel &compareToWheel) const
+    {
+        double speedOne = this->radius * this->rpm;
+        double speedTwo = compareToWheel.radius * compareToWheel.rpm;
+        return speedOne > speedTwo;
+    }
+
+    bool operator>=(const Wheel &compareToWheel) const
+    {
+        double speedOne = this->radius * this->rpm;
+        double speedTwo = compareToWheel.radius * compareToWheel.rpm;
+        return speedOne >= speedTwo;
+    }
 
     bool setRpm(double newRpm)
     {
@@ -23,13 +66,15 @@ public:
             return false;
         }
     }
+
     double getRpm()
     {
         return rpm;
     }
+
     bool setAngle(double newAngle)
     {
-        if (newAngle >= 0 && newAngle <= 360)
+        if (newAngle >= 0 && newAngle <= 40)
         {
             this->angle = newAngle;
             return true;
@@ -39,8 +84,30 @@ public:
             return false;
         }
     }
+
     double getAngle()
     {
         return angle;
+    }
+
+    double getPressure()
+    {
+        return pressure;
+    }
+
+    friend void setPressure(Wheel &wheel, double newPressure);
+};
+
+void setPressure(Wheel &wheel, double newPressure)
+{
+    wheel.pressure = newPressure;
+}
+
+class Pump
+{
+public:
+    void setPressure(Wheel &wheel, double newPressure)
+    {
+        ::setPressure(wheel, newPressure);
     }
 };
