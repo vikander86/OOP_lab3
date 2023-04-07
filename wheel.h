@@ -1,8 +1,11 @@
 #include <iostream>
 #include <functional>
+#include "pump.h"
 
 class Wheel
 {
+    friend class Pump;
+
 private:
     double radius;
     double rpm;
@@ -93,21 +96,5 @@ public:
     double getPressure()
     {
         return pressure;
-    }
-
-    friend void setPressure(Wheel &wheel, double newPressure);
-};
-
-void setPressure(Wheel &wheel, double newPressure)
-{
-    wheel.pressure = newPressure;
-}
-
-class Pump
-{
-public:
-    void setPressure(Wheel &wheel, double newPressure)
-    {
-        ::setPressure(wheel, newPressure);
     }
 };
