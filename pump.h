@@ -1,6 +1,3 @@
-#include <iostream>
-#include "wheel.h"
-
 class Pump
 {
 public:

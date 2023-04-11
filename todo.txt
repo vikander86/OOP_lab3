@@ -1,0 +1,81 @@
+Title: Object-Oriented Design Lab - Converting Concepts to Code
+
+Objective: Practice converting object-oriented design concepts into code, learn to use Git source control, create classes and member functions, and understand getter and setter functions.
+
+Assignment:
+
+Set up a new Git repository and clone it in VS Code. Create a new branch and make a commit after each exercise. Push your branch back to the repo at the end of your lab time, even if you did not finish everything.
+
+Exercise I: Creating an Empty C++ Project
+
+Create an empty C++ project using the provided instructions.
+Exercise II: Re-invent the Wheel
+
+Create a Wheel class in a new file Wheel.h with the following members:
+Data Members:
+double radius;
+double rpm;
+double angle;
+double pressure;
+Member Functions:
+Non-default constructor to create a Wheel with radius;
+Getter and setter functions for rpm, return bool from setter;
+Getter and setter functions for angle, return bool from setter;
+Getter for radius;
+Instantiate a Wheel object in your main program and make a commit.
+
+
+Exercise III: Make Friends
+
+Ensure that pressure is private in the Wheel class.
+Create a new Pump class with a setPressure function that takes a Wheel object and a double value for pressure as arguments.
+In the main program, use the Pump class to set pressure in the wheel and make a commit.
+
+Exercise IV: Compare Wheels
+
+Define six comparison operators (==, !=, <, >, <=, >=) in the Wheel class that compare the current speed of two wheels by using radius and rpm.
+Instantiate several Wheel objects with different values in the main program and compare them.
+
+Exercise V: Create a Car
+
+Create a Car class with the following data members and member functions:
+Data Members:
+Color color; //Color is enum
+int weight;
+string model;
+double linearVelocity;
+double angularVelocity;
+Wheel *flWheel; //Assume that Wheel is an external class
+Wheel *frWheel;
+Wheel *rlWheel;
+Wheel *rrWheel;
+Member Functions:
+bool setSpeed(double speed);
+bool setTurningAngle(double angle);
+
+Create three Car objects in the main program using default constructor, copy constructor, and copy assignment operator.
+Debug the program step by step, observe variables and stack, and note the values of linear and angular velocities when a new car is created. Add the answer as a comment in your program and make a commit.
+
+
+Exercise VI: Custom Constructors
+
+Add a non-default constructor to the Car class that creates a new car with a given color. 
+Try to run your program and check if it compiles. 
+Identify necessary changes to make the program work again with the non-default constructor.
+Define all other Special Member Functions explicitly for the Car class. (copy & move)
+Each function should output a phrase to the console, indicating which constructor is called and the model of the car.
+Create setter/getter member functions for the model name and assign a unique name to each car.
+Test constructors in the main function and make a commit.
+
+
+Exercise VII: Shallow vs Deep
+
+Reflect on how you copied the wheels in the copy constructor for the Car class.
+Create a member function in the Car class that prints out the current angle and RPM for each wheel.
+Fill the setSpeed and setTurningAngle functions with code to set the same speed and angle for all wheels (regardless of physical possibility).
+In the main program:
+Create a car and make another one by copying the first (invoke the copy constructor).
+Set different speeds and turning angles for both cars.
+Print out the current angle and RPM of all wheels for each car. Note if they are different or the same.
+Create your first car with a pointer, make the second as a copy, and delete the first. Try to get angles and RPM of the wheels of the second car. Observe what happens and explain why.
+Implement a deep copy constructor for your Car class and make a commit.

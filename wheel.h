@@ -1,9 +1,8 @@
-#include <iostream>
-#include <functional>
-#include "pump.h"
+#pragma once
 
 class Wheel
 {
+    friend class Car;
     friend class Pump;
 
 private:
