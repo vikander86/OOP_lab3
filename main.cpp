@@ -10,7 +10,6 @@ int main()
     // creates a car with the default member variables specified in the car class
     Car carOne;
     carOne.setModelName("BatMobile");
-    carOne.getColor();
     // before the instantion of the object, it's clear to see that the values are very random
     // and as soon as we step into our Car Class, it modifies our variables to that which I set as default
 
@@ -20,18 +19,30 @@ int main()
     carTwo.setModelName("CatMobile");
     // Same as carOne, with the instantion of the object, it's clear to see that the values are very random
     // and as soon as we step into our copy constructor, it copies the values of our carOne
-    // we also have to delete our pointers to our wheels, as the shallow copy will effectively not work
-    // so we have to update the pointers by deference
+    // we have to create new Wheel objects and copy the values from the original wheels
 
-    // copy assigment
+    // copy assignment operator
     // creates a copy of carOne using the assigment operator
     Car carThree;
     carThree = carTwo;
-    // the assignment operator works similiar to the copy constructor in that
-    // it creates a deep copy of our carOne
+    carThree.setModelName("PinguinMobile");
+    // the assignment operator works similiar to the copy constructor in that it creates a deep copy of our carOne
 
+    // non-default
+    // creates a car with specified color.
     Car carFour(Car::Color::White);
-    carFour.getColor();
+    carFour.setModelName("JokerMobile");
+
+    // move constructor
+    // to ensure invokation of the move constructor, we can make use of std::move to make sure the move constructor is invoked
+    Car carFive(std::move(carFour));
+    // the values stored in our carFour are moved to carFive, and the pointers in carFour are set to null
+    // carFour still exists in memory, but for us to use it again successfully we would have to re-initialise it.
+
+    // move assigment operator
+    // to en invokation of the move constructor, we make use of std::move to make sure the move assigment operator is invoked.
+    carFour = std::move(carOne);
+    // the values stored in our carTwo are moved to carFour
 
     return 0;
 }

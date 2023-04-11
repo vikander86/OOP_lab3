@@ -51,7 +51,7 @@ public:
         delete frwheel;
         delete rlwheel;
         delete rrwheel;
-        std::cout << "Deleting object" << std::endl;
+        std::cout << "Deleting model: " << model << std::endl;
     }
 
     // assigment constructor
@@ -88,6 +88,7 @@ public:
         other.frwheel = nullptr;
         other.rlwheel = nullptr;
         other.rrwheel = nullptr;
+        std::cout << "Invoking move constructor! Moving car model: " << model << std::endl;
     }
 
     // move assignment operator
@@ -114,6 +115,7 @@ public:
             other.frwheel = nullptr;
             other.rlwheel = nullptr;
             other.rrwheel = nullptr;
+            std::cout << "Invoking MoveAssigmentOperator! Moving car model: " << model << std::endl;
         }
         return *this;
     }
