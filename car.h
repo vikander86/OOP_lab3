@@ -1,10 +1,8 @@
 #pragma once
-#include <string>
-#include "wheel.h"
-#include <math.h>
 class Car
 {
 public:
+    friend class Wheel;
     enum class Color
     {
         Red,
@@ -123,7 +121,7 @@ public:
     // none default constructor
     Car(Color color)
         : color(color), angularVelocity(0), liniarVelocity(0), weight(0), model(""),
-          flwheel(nullptr), frwheel(nullptr), rlwheel(nullptr), rrwheel(nullptr)
+          flwheel(new Wheel(0)), frwheel(new Wheel(0)), rlwheel(new Wheel(0)), rrwheel(new Wheel(0))
     {
         std::cout << "Creating car with non-default constructor." << std::endl;
     }
@@ -138,25 +136,35 @@ public:
         return model;
     }
 
-    void getColor()
+    std::string getColor() const
     {
+        std::string colorTemp;
         switch (color)
         {
         case Color::Red:
-            std::cout << "Car is Red" << std::endl;
-            break;
+            colorTemp = "Red";
+            return colorTemp;
         case Color::White:
-            std::cout << "Car is White" << std::endl;
+            colorTemp = "White";
             break;
         case Color::Black:
-            std::cout << "Car is Black" << std::endl;
+            colorTemp = "Black";
             break;
         case Color::Blue:
-            std::cout << "Car is blue" << std::endl;
+            colorTemp = "Blue";
             break;
         default:
             break;
         }
+        return colorTemp;
+    }
+
+    void setWheelRadius(double radius)
+    {
+        flwheel->radius = radius;
+        frwheel->radius = radius;
+        rlwheel->radius = radius;
+        rrwheel->radius = radius;
     }
 
     void setWeight(double weight)
@@ -164,26 +172,45 @@ public:
         this->weight = weight;
     }
 
-    double getWeight()
+    double getWeight() const
     {
         return weight;
     }
 
-    void setSpeed()
+    void setSpeed(double speed)
     {
-        this->liniarVelocity = this->flwheel->getRpm() * 2 * M_PI * this->flwheel->radius;
+        double RPM = speed / (2 * flwheel->radius * M_PI);
+        flwheel->setRpm(RPM);
+        frwheel->setRpm(RPM);
+        rlwheel->setRpm(RPM);
+        rrwheel->setRpm(RPM);
+        liniarVelocity = speed;
     }
 
-    bool setTurningAngle(double angle)
+    void setTurningAngle(double angle)
     {
-        if (angle >= 0 && angle <= 10000)
-        {
-            this->angularVelocity = angle;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        flwheel->setAngle(angle);
+        frwheel->setAngle(angle);
+        rlwheel->setAngle(angle);
+        rrwheel->setAngle(angle);
+        angularVelocity = angle;
+    }
+
+    void printCarInfo()
+    {
+        std::cout << ":::CAR INFO:::" << std::endl
+                  << "Model: " << model << std::endl
+                  << "Weight: " << weight << std::endl
+                  << "Speed: " << liniarVelocity << std::endl
+                  << "Angle: " << angularVelocity << std::endl
+                  << "Wheel radius: " << flwheel->radius << std::endl;
+    }
+
+    void printWheelInfo()
+    {
+        std::cout << "FrontLeft-> RPM: " << flwheel->getRpm() << " Angle: " << flwheel->angle << std::endl;
+        std::cout << "FrontRight-> RPM: " << frwheel->getRpm() << " Angle: " << frwheel->angle << std::endl;
+        std::cout << "RearLeft-> RPM: " << rlwheel->getRpm() << " Angle: " << rlwheel->angle << std::endl;
+        std::cout << "RearRight-> RPM: " << rrwheel->getRpm() << " Angle: " << rrwheel->angle << std::endl;
     }
 };

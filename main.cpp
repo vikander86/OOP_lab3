@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <math.h>
 #include "wheel.h"
 #include "pump.h"
 #include "car.h"
@@ -10,6 +11,10 @@ int main()
     // creates a car with the default member variables specified in the car class
     Car carOne;
     carOne.setModelName("BatMobile");
+    carOne.setWheelRadius(0.38);
+    carOne.setSpeed(220);
+    carOne.setWeight(1340);
+    carOne.setTurningAngle(22);
     // before the instantion of the object, it's clear to see that the values are very random
     // and as soon as we step into our Car Class, it modifies our variables to that which I set as default
 
@@ -38,11 +43,25 @@ int main()
     Car carFive(std::move(carFour));
     // the values stored in our carFour are moved to carFive, and the pointers in carFour are set to null
     // carFour still exists in memory, but for us to use it again successfully we would have to re-initialise it.
+    carFive.setWheelRadius(0.35);
+    carFive.setSpeed(260);
+    carFive.setWeight(1120);
+    carFive.setTurningAngle(10);
 
     // move assigment operator
     // to en invokation of the move constructor, we make use of std::move to make sure the move assigment operator is invoked.
     carFour = std::move(carOne);
     // the values stored in our carTwo are moved to carFour
+
+    carFour.printCarInfo();
+    carFour.printWheelInfo();
+    carFive.printWheelInfo();
+    Car *carSix = new Car(Car::Color::Black);
+    carSix->setModelName("Two-Face-Truck");
+    Car carSeven(*carSix);
+    delete carSix;
+    carSix = nullptr;
+    carSeven.printWheelInfo();
 
     return 0;
 }

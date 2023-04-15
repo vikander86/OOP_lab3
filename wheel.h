@@ -1,5 +1,4 @@
 #pragma once
-
 class Wheel
 {
     friend class Car;
@@ -18,41 +17,41 @@ public:
 
     bool operator==(const Wheel &compareToWheel) const
     {
-        double speedOne = this->radius * this->rpm;
-        double speedTwo = compareToWheel.radius * compareToWheel.rpm;
+        double speedOne = this->radius * this->rpm * M_PI * 2;
+        double speedTwo = compareToWheel.radius * compareToWheel.rpm * M_PI * 2;
         return speedOne == speedTwo;
     }
 
     bool operator!=(const Wheel &compareToWheel) const
     {
-        double speedOne = this->radius * this->rpm;
-        double speedTwo = compareToWheel.radius * compareToWheel.rpm;
+        double speedOne = this->radius * this->rpm * M_PI * 2;
+        double speedTwo = compareToWheel.radius * compareToWheel.rpm * M_PI * 2;
         return speedOne != speedTwo;
     }
 
     bool operator<(const Wheel &compareToWheel) const
     {
-        double speedOne = this->radius * this->rpm;
-        double speedTwo = compareToWheel.radius * compareToWheel.rpm;
+        double speedOne = this->radius * this->rpm * M_PI * 2;
+        double speedTwo = compareToWheel.radius * compareToWheel.rpm * M_PI * 2;
         return speedOne < speedTwo;
     }
     bool operator<=(const Wheel &compareToWheel) const
     {
-        double speedOne = this->radius * this->rpm;
-        double speedTwo = compareToWheel.radius * compareToWheel.rpm;
+        double speedOne = this->radius * this->rpm * M_PI * 2;
+        double speedTwo = compareToWheel.radius * compareToWheel.rpm * M_PI * 2;
         return speedOne <= speedTwo;
     }
     bool operator>(const Wheel &compareToWheel) const
     {
-        double speedOne = this->radius * this->rpm;
-        double speedTwo = compareToWheel.radius * compareToWheel.rpm;
+        double speedOne = this->radius * this->rpm * M_PI * 2;
+        double speedTwo = compareToWheel.radius * compareToWheel.rpm * M_PI * 2;
         return speedOne > speedTwo;
     }
 
     bool operator>=(const Wheel &compareToWheel) const
     {
-        double speedOne = this->radius * this->rpm;
-        double speedTwo = compareToWheel.radius * compareToWheel.rpm;
+        double speedOne = this->radius * this->rpm * M_PI * 2;
+        double speedTwo = compareToWheel.radius * compareToWheel.rpm * M_PI * 2;
         return speedOne >= speedTwo;
     }
 
@@ -69,7 +68,7 @@ public:
         }
     }
 
-    double getRpm()
+    double getRpm() const
     {
         return rpm;
     }

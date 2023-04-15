@@ -91,3 +91,20 @@ To adress this I implemented a deep copy constructor instead, which creates new 
 
 Added a non-default constructor to the car class that creates a new car with a given color.
 Further added the required getter and setter functions to create a complete Car.
+Everytime a constructor/deconstructor is called, it prints to the console with satisfying results.
+
+### ProblemSolving
+
+I had many issues with the move constructor and understanding how it actually works. My thought was it just had to be called like any of the other constructors, but clearly this was wrong. I had to specify std::move inside the argument when doing the move or it would simply call the copyconstructor instead.
+
+I also thought I had to delete the object i was moving, but I found out that this is being handled by the deconstructor! It does effectively remove the first cars wheel pointers, and trying to get the address of the wheels caused segmentation fault, which is what it should do.
+
+## Exercise 7
+
+Everything is shown in the main with the initialization of all the constructors.
+
+### ProblemSolving
+
+I created car six on the heap, and did a copy of it to carSeven, I then deleted carSix through main, and tried getting the wheel info on carSeven which worked fine!
+
+
